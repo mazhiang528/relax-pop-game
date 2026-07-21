@@ -3,30 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="戳破泡泡，把烦恼一个个放走。" />
+  <meta name="description" content="泡泡放空站：带等级、模式与金币奖励的解压小游戏。" />
   <title>泡泡放空站｜解压小游戏</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./effects.css" />
+  <link rel="stylesheet" href="./progression.css" />
 </head>
 <body>
   <main>
     <section class="game-shell" aria-label="泡泡放空站小游戏">
       <header>
         <div><p class="eyebrow">TODAY'S LITTLE PAUSE</p><h1>泡泡放空站</h1></div>
-        <button class="start" id="start">开始游戏</button>
+        <button class="shop-button" id="shopButton" aria-label="打开商城"><span>金币</span><strong id="coins">0</strong> 🪙</button>
       </header>
+
+      <section class="player-card" aria-label="玩家等级">
+        <div class="level-badge">LV.<strong id="level">1</strong></div>
+        <div class="xp-area"><div class="xp-copy"><span>成长经验</span><span><b id="currentXp">0</b> / <b id="nextXp">100</b> XP</span></div><div class="xp-track"><i id="xpBar"></i></div></div>
+      </section>
+
+      <section class="mode-section" id="modeSection">
+        <div class="section-title"><span>选择模式</span><small>难度越高，经验越多</small></div>
+        <div class="mode-grid">
+          <button class="mode active" data-mode="relax"><b>休闲</b><span>60 秒 · 舒缓节奏</span><em>经验 ×1</em></button>
+          <button class="mode" data-mode="classic"><b>经典</b><span>45 秒 · 标准节奏</span><em>经验 ×1.5</em></button>
+          <button class="mode" data-mode="challenge"><b>挑战</b><span>30 秒 · 泡泡更多</span><em>经验 ×2.5</em></button>
+        </div>
+      </section>
+
       <div class="stats" aria-live="polite">
         <div><span>得分</span><strong id="score">0</strong></div>
         <div><span>同色连击</span><strong id="combo">0×</strong></div>
-        <div><span>时间</span><strong id="seconds">45s</strong></div>
+        <div><span>时间</span><strong id="seconds">60s</strong></div>
       </div>
       <div class="playground" id="playground">
         <div class="soft-orb orb-one"></div><div class="soft-orb orb-two"></div>
-        <div class="welcome" id="welcome"><b>◌</b><p id="message">准备好，把烦恼一个个戳走。</p></div>
+        <div class="welcome" id="welcome"><b>◌</b><p id="message">选择模式，开始今天的放空时间。</p><button class="start" id="start">开始游戏</button></div>
       </div>
       <p class="hint">每种颜色都有不同音效。连续击破同色泡泡，最高可得 5 倍分数。</p>
     </section>
   </main>
+
+  <div class="modal" id="rewardModal" hidden><div class="modal-card"><span class="reward-icon">🎉</span><p class="modal-kicker">LEVEL UP</p><h2>升到 <span id="rewardLevel">2</span> 级！</h2><p>升级奖励已放入账户</p><strong class="reward-coins">+<span id="rewardCoins">100</span> 金币</strong><button data-close="rewardModal">领取奖励</button></div></div>
+  <div class="modal" id="shopModal" hidden><div class="modal-card shop-empty"><span class="reward-icon">🛍️</span><p class="modal-kicker">BUBBLE SHOP</p><h2>泡泡商城</h2><p>你的余额：<strong id="shopCoins">0</strong> 金币</p><div class="empty-shelf">道具正在准备中<br><small>金币会一直为你保留</small></div><button data-close="shopModal">先去玩一局</button></div></div>
   <script src="./game.js"></script>
 </body>
 </html>

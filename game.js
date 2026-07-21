@@ -1,0 +1,9 @@
+const COLORS=["#ff7a9b","#ffbf69","#71d7c6","#8e9cff","#be8cff"],DURATION=45;
+const field=document.querySelector("#playground"),start=document.querySelector("#start"),scoreEl=document.querySelector("#score"),comboEl=document.querySelector("#combo"),secondsEl=document.querySelector("#seconds"),welcome=document.querySelector("#welcome"),message=document.querySelector("#message");
+let score=0,combo=0,seconds=DURATION,running=false,lastPop=0,timer,maker;
+function addBubble(){if(!running)return;const bubble=document.createElement("button");const size=58+Math.random()*45;bubble.className="bubble";bubble.ariaLabel="戳破泡泡";bubble.style.cssText=`left:${8+Math.random()*76}%;top:${14+Math.random()*66}%;width:${size}px;height:${size}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]}`;bubble.innerHTML="<i></i>";bubble.onclick=()=>pop(bubble);field.appendChild(bubble);const all=field.querySelectorAll(".bubble");if(all.length>7)all[0].remove()}
+function render(){scoreEl.textContent=score;comboEl.textContent=combo+"×";secondsEl.textContent=seconds+"s"}
+function pop(bubble){if(!running)return;const now=Date.now();combo=now-lastPop<900?combo+1:1;lastPop=now;score+=10+Math.min(combo,10);bubble.remove();render();setTimeout(addBubble,160)}
+function finish(){running=false;clearInterval(timer);clearInterval(maker);field.querySelectorAll(".bubble").forEach(x=>x.remove());message.textContent="这一局结束。慢慢呼吸，你做得很好。";welcome.style.display="grid";start.textContent="再玩一局"}
+function begin(){clearInterval(timer);clearInterval(maker);field.querySelectorAll(".bubble").forEach(x=>x.remove());score=combo=0;seconds=DURATION;running=true;welcome.style.display="none";start.textContent="重新开始";render();for(let i=0;i<4;i++)addBubble();maker=setInterval(addBubble,760);timer=setInterval(()=>{seconds--;render();if(seconds<=0)finish()},1000)}
+start.addEventListener("click",begin);render();

@@ -1,0 +1,15 @@
+.points {
+  position: absolute;
+  z-index: 3;
+  color: #30324b;
+  font-size: 20px;
+  font-weight: 800;
+  pointer-events: none;
+  text-shadow: 0 1px 4px #fff;
+  animation: points-up .65s ease-out forwards;
+}
+
+@keyframes points-up {
+  from { opacity: 1; transform: translate(25px, 10px) scale(.8); }
+  to { opacity: 0; transform: translate(25px, -45px) scale(1.2); }
+}

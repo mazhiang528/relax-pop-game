@@ -6,6 +6,7 @@
   <meta name="description" content="戳破泡泡，把烦恼一个个放走。" />
   <title>泡泡放空站｜解压小游戏</title>
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./effects.css" />
 </head>
 <body>
   <main>
@@ -16,14 +17,14 @@
       </header>
       <div class="stats" aria-live="polite">
         <div><span>得分</span><strong id="score">0</strong></div>
-        <div><span>连击</span><strong id="combo">0×</strong></div>
+        <div><span>同色连击</span><strong id="combo">0×</strong></div>
         <div><span>时间</span><strong id="seconds">45s</strong></div>
       </div>
       <div class="playground" id="playground">
         <div class="soft-orb orb-one"></div><div class="soft-orb orb-two"></div>
         <div class="welcome" id="welcome"><b>◌</b><p id="message">准备好，把烦恼一个个戳走。</p></div>
       </div>
-      <p class="hint">点击出现的泡泡。越快连击，分数越高。</p>
+      <p class="hint">每种颜色都有不同音效。连续击破同色泡泡，最高可得 5 倍分数。</p>
     </section>
   </main>
   <script src="./game.js"></script>

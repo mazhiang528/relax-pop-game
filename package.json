@@ -5,7 +5,12 @@
   "scripts": {
     "build": "node scripts/build.mjs"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "type": "module"
+  "dependencies": {
+    "@capacitor/android": "^8.4.2",
+    "@capacitor/core": "^8.4.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@capacitor/cli": "^8.4.2"
+  }
 }
